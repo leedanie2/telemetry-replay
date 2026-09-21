@@ -1,0 +1,96 @@
+{
+  "demo_passed": true,
+  "first_replay": {
+    "inserted": 6,
+    "duplicates": 1,
+    "conflicts": 0
+  },
+  "second_replay": {
+    "inserted": 0,
+    "duplicates": 7,
+    "conflicts": 0
+  },
+  "conflicting_replay": {
+    "inserted": 0,
+    "duplicates": 2,
+    "conflicts": 1
+  },
+  "valid_interval_subtotal_j": "51.0000000000000000",
+  "full_period_total_j": null,
+  "limitation": "Energy across the reboot boundary is unknown",
+  "report": [
+    {
+      "device_id": "A",
+      "boot_id": "b1",
+      "sequence": 0,
+      "event_time": "2026-09-18T19:00:00-05:00",
+      "previous_sequence": null,
+      "duration_s": null,
+      "energy_j": null,
+      "average_power_w": null,
+      "quality": "first_sample",
+      "has_conflicting_payload": false
+    },
+    {
+      "device_id": "A",
+      "boot_id": "b1",
+      "sequence": 1,
+      "event_time": "2026-09-18T19:00:01-05:00",
+      "previous_sequence": 0,
+      "duration_s": "1.000000",
+      "energy_j": "12.0000000000000000",
+      "average_power_w": "12.0000000000000000",
+      "quality": "ok",
+      "has_conflicting_payload": true
+    },
+    {
+      "device_id": "A",
+      "boot_id": "b1",
+      "sequence": 2,
+      "event_time": "2026-09-18T19:00:02-05:00",
+      "previous_sequence": 1,
+      "duration_s": "1.000000",
+      "energy_j": "13.0000000000000000",
+      "average_power_w": "13.0000000000000000",
+      "quality": "ok",
+      "has_conflicting_payload": false
+    },
+    {
+      "device_id": "A",
+      "boot_id": "b1",
+      "sequence": 3,
+      "event_time": "2026-09-18T19:00:03-05:00",
+      "previous_sequence": 2,
+      "duration_s": "1.000000",
+      "energy_j": "14.0000000000000000",
+      "average_power_w": "14.0000000000000000",
+      "quality": "ok",
+      "has_conflicting_payload": false
+    },
+    {
+      "device_id": "A",
+      "boot_id": "b2",
+      "sequence": 0,
+      "event_time": "2026-09-18T19:00:04-05:00",
+      "previous_sequence": null,
+      "duration_s": null,
+      "energy_j": null,
+      "average_power_w": null,
+      "quality": "first_sample",
+      "has_conflicting_payload": false
+    },
+    {
+      "device_id": "A",
+      "boot_id": "b2",
+      "sequence": 1,
+      "event_time": "2026-09-18T19:00:05-05:00",
+      "previous_sequence": 0,
+      "duration_s": "1.000000",
+      "energy_j": "12.0000000000000000",
+      "average_power_w": "12.0000000000000000",
+      "quality": "ok",
+      "has_conflicting_payload": false
+    }
+  ],
+  "persistent_data_changed": false
+}

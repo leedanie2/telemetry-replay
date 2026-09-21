@@ -1,0 +1,153 @@
+{
+  "status": "Expected outcomes, not measured application results",
+  "assumptions": [
+    "Fresh measurement data per case; register fixture devices first.",
+    "First-seen reading retained on conflicting identity; conflicts surfaced.",
+    "Cross-row anomalies retained as raw measurements and flagged by reports.",
+    "Second pass repeats exactly the same arrival-ordered file."
+  ],
+  "cases": {
+    "duplicate": {
+      "input_rows": 3,
+      "first_pass": {
+        "inserted": 2,
+        "duplicates": 1,
+        "conflicts": 0
+      },
+      "second_pass": {
+        "inserted": 0,
+        "duplicates": 3,
+        "conflicts": 0
+      },
+      "stored_rows": 2,
+      "report_expectations": [
+        "One valid interval: 12 J over 1 s = 12 W."
+      ]
+    },
+    "conflict": {
+      "input_rows": 3,
+      "first_pass": {
+        "inserted": 2,
+        "duplicates": 0,
+        "conflicts": 1
+      },
+      "second_pass": {
+        "inserted": 0,
+        "duplicates": 2,
+        "conflicts": 1
+      },
+      "stored_rows": 2,
+      "report_expectations": [
+        "Flag conflicting identity; do not replace 1012 J with 1099 J.",
+        "Valid interval remains 12 J / 12 W; expose the conflict separately."
+      ]
+    },
+    "gap": {
+      "input_rows": 2,
+      "first_pass": {
+        "inserted": 2,
+        "duplicates": 0,
+        "conflicts": 0
+      },
+      "second_pass": {
+        "inserted": 0,
+        "duplicates": 2,
+        "conflicts": 0
+      },
+      "stored_rows": 2,
+      "report_expectations": [
+        "Flag one missing sequence; 27 J across 2 s = 13.5 W.",
+        "Do not fabricate individual-second values."
+      ]
+    },
+    "reset": {
+      "input_rows": 4,
+      "first_pass": {
+        "inserted": 4,
+        "duplicates": 0,
+        "conflicts": 0
+      },
+      "second_pass": {
+        "inserted": 0,
+        "duplicates": 4,
+        "conflicts": 0
+      },
+      "stored_rows": 4,
+      "report_expectations": [
+        "Two valid intervals, each 12 J / 12 W.",
+        "Reset boundary 1-2 s is unknown; 24 J is a valid-interval subtotal, not full-period consumption."
+      ]
+    },
+    "out_of_order": {
+      "input_rows": 3,
+      "first_pass": {
+        "inserted": 3,
+        "duplicates": 0,
+        "conflicts": 0
+      },
+      "second_pass": {
+        "inserted": 0,
+        "duplicates": 3,
+        "conflicts": 0
+      },
+      "stored_rows": 3,
+      "report_expectations": [
+        "Final event-ordered intervals: 12 J / 12 W, then 13 J / 13 W.",
+        "Late arrival fills the earlier gap; final report has no missing sequence."
+      ]
+    },
+    "equal_time": {
+      "input_rows": 2,
+      "first_pass": {
+        "inserted": 2,
+        "duplicates": 0,
+        "conflicts": 0
+      },
+      "second_pass": {
+        "inserted": 0,
+        "duplicates": 2,
+        "conflicts": 0
+      },
+      "stored_rows": 2,
+      "report_expectations": [
+        "Two distinct identities, not duplicates.",
+        "Use deterministic tie-breaking; duration zero is invalid for average power. Do not divide by zero."
+      ]
+    },
+    "decreasing_counter": {
+      "input_rows": 2,
+      "first_pass": {
+        "inserted": 2,
+        "duplicates": 0,
+        "conflicts": 0
+      },
+      "second_pass": {
+        "inserted": 0,
+        "duplicates": 2,
+        "conflicts": 0
+      },
+      "stored_rows": 2,
+      "report_expectations": [
+        "Store raw readings; flag a decreasing counter in this no-wrap boot.",
+        "Do not report negative consumption as valid energy or invent a reset."
+      ]
+    },
+    "device_isolation": {
+      "input_rows": 4,
+      "first_pass": {
+        "inserted": 4,
+        "duplicates": 0,
+        "conflicts": 0
+      },
+      "second_pass": {
+        "inserted": 0,
+        "duplicates": 4,
+        "conflicts": 0
+      },
+      "stored_rows": 4,
+      "report_expectations": [
+        "Separate devices: A = 12 J / 12 W, B = 20 J / 20 W."
+      ]
+    }
+  }
+}

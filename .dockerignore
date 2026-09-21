@@ -1,0 +1,17 @@
+# Include only inputs used by the Dockerfile. Keep local DBs and credentials out.
+**
+!Dockerfile
+!.dockerignore
+!requirements.txt
+!telemetry/
+!telemetry/**
+!sql/
+!sql/**
+!fixtures/
+!fixtures/**
+!tests/
+!tests/**
+!scripts/
+!scripts/**
+**/__pycache__/
+**/*.pyc
